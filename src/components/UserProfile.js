@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class LoginPage extends Component {
+class UserProfile extends Component {
   render() {
     //const { id, replies } = this.props
 
     return (
       <div>
-          Login Page
+          UserProfile
       </div>
     )
   }
@@ -20,4 +20,4 @@ function mapStateToProps () {
   }
 }
 
-export default connect(mapStateToProps)(LoginPage)
+export default connect(mapStateToProps)(UserProfile)
