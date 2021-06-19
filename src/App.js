@@ -32,18 +32,15 @@ class App extends Component {
   return (
     <Router basename='/projects/would-you-rather-project'>
       <Fragment>
-        <div className='container'>
+        <div className='container' style={{marginBottom: 200}}>
           <NavigationBar/>
           <div>
-                <h1>'Would You Rather' Game</h1>
                 <Route path='/' exact component={Home} />
                 <Route path='/new_question' component={NewQuestionPage} />
                 <Route path='/poll/:id' component={QuestionPoll} />
                 <Route path='/leaderboard' component={Leaderboard} />
                 <Route path='/userprofile' component={UserProfile} />
                 <Route path='/login' component={LoginPage} />
-
-
           </div>
           </div>
       </Fragment>

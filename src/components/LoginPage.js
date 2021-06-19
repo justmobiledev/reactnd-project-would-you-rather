@@ -6,7 +6,7 @@ class LoginPage extends Component {
     //const { id, replies } = this.props
 
     return (
-      <div>
+      <div style={{marginTop: 24}} >
           Login Page
       </div>
     )

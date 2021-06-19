@@ -9,7 +9,6 @@ export default function NavigatinBar () {
         <Nav.Link as={NavLink} to='/' exact>Home</Nav.Link>
         <Nav.Link as={NavLink} to='/new_question'>New Question</Nav.Link>
         <Nav.Link as={NavLink} to='/leaderboard'>Leader Board</Nav.Link>
-        <Nav.Link as={NavLink} to='/userprofile'>User profile</Nav.Link>
         <Nav.Link as={NavLink} to='/login'>Logout</Nav.Link>
       </Nav>
     </Navbar>

@@ -69,7 +69,7 @@ class QuestionPoll extends Component {
 
 
     return (
-      <div style={{marginBottom: 200}}>
+      <div style={{marginTop: 24, marginBottom: 200}}>
           <Card style={{ width: '38rem' }}>
             <Card.Header><h3>{authorName} asks:</h3></Card.Header>
               <Card.Body>

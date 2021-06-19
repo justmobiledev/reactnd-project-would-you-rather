@@ -44,7 +44,7 @@ class NewQuestionPage extends Component {
 
   render() {
     return (
-      <div style={{marginBottom: 200}}>
+      <div style={{ marginTop: 24, marginBottom: 200}}>
           <Card style={{ width: '40rem' }}>
           <Card.Header><h2>Create New Question:</h2></Card.Header>
             <Card.Body>

@@ -33,7 +33,8 @@ class HomePage extends Component {
 
     return (
       <div>
-         <Card style={{ width: '40rem' }}>
+         <h1>'Would You Rather' Game</h1>
+         <Card style={{ marginTop: 24, width: '40rem' }}>
          <Card.Body>
             <Tabs
                 id="question-tabs"
