@@ -5,14 +5,16 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import NavigationBar from './navigation/NavigationBar';
-import {HomePage} from './components'
+import {Home} from './components'
 import NewQuestionPage from './components/NewQuestionPage';
 import Leaderboard from './components/Leaderboard';
 import UserProfile from './components/UserProfile';
 import LoginPage from './components/LoginPage';
-import ViewQuestion from './components/ViewQuestion';
+import QuestionPoll from './components/QuestionPoll';
 import questions from './data/questions';
+import users from './data/users';
 import {loadQuestions} from './actions/questionActions';
+import {loadUsers} from './actions/userActions';
 import { connect } from 'react-redux'
 
 
@@ -22,7 +24,7 @@ class App extends Component {
     const { dispatch } = this.props;
     // Load initial data
     dispatch(loadQuestions(questions));
-    //dispatch(loadQuestions(questions));
+    dispatch(loadUsers(users));
   }
 
   render() {
@@ -34,16 +36,9 @@ class App extends Component {
           <NavigationBar/>
           <div>
                 <h1>'Would You Rather' Game</h1>
-                {
-                  this.props.questions ? 
-                  
-                    <p>{JSON.stringify(this.props.questions, 2, null)}</p>
-                  : null
-                }
-
-                <Route path='/' exact component={HomePage} />
+                <Route path='/' exact component={Home} />
                 <Route path='/new_question' component={NewQuestionPage} />
-                <Route path='/view_question' component={ViewQuestion} />
+                <Route path='/poll/:id' component={QuestionPoll} />
                 <Route path='/leaderboard' component={Leaderboard} />
                 <Route path='/userprofile' component={UserProfile} />
                 <Route path='/login' component={LoginPage} />

@@ -69,11 +69,11 @@ const questions = {
       author: 'johndoe',
       timestamp: 1493579767190,
       optionOne: {
-        votes: ['johndoe'],
+        votes: [],
         text: 'write JavaScript',
       },
       optionTwo: {
-        votes: ['tylermcginnis'],
+        votes: [],
         text: 'write Swift'
       }
     },

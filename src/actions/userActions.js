@@ -1,8 +1,8 @@
-export const SET_USERS = 'SET_USERS'
+export const LOAD_USERS = 'LOAD_USERS'
 
-export function setUsers (users) {
+export function loadUsers (users) {
   return {
-    type: SET_USERS,
+    type: LOAD_USERS,
     users,
   }
 }
