@@ -5,6 +5,7 @@ import {Card, Tabs, Tab} from 'react-bootstrap'
 import {isEmpty} from 'lodash/fp'
 import {connect} from 'react-redux'
 import QuestionList from './QuestionList'
+import {Redirect} from 'react-router-dom';
 
 class HomePage extends Component {
     constructor(){
@@ -14,8 +15,17 @@ class HomePage extends Component {
         }
     }
 
+    componentDidMount = () => {
+      // Check login state
+      if (!this.props.authedUser) {
+        this.props.history.push(`/login`)
+      }
+    }
+
 
   render() {
+
+
     const questions = this.props.questions;
     let unansweredQuestions = [];
     let answeredQuestions = [];
@@ -54,8 +64,9 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps ({questionReducer}) {
+function mapStateToProps ({authedUserReducer, questionReducer}) {
   return {
+      authedUser: authedUserReducer.authedUser,
       questions: questionReducer.questions
   }
 }

@@ -4,9 +4,18 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {isEmpty} from 'lodash/fp'
 import LeaderboardItem from './LeaderboardItem'
+import {Redirect} from 'react-router-dom'
 
 class Leaderboard extends Component {
+    componentDidMount = () => {
+        // Check login state
+        if (!this.props.authedUser) {
+          this.props.history.push(`/login`)
+        }
+      }
+
   render() {
+
       const users = this.props.users;
       //const questions = this.props.questions;
 
@@ -42,9 +51,9 @@ class Leaderboard extends Component {
   }
 }
 
-function mapStateToProps ({userReducer, questionReducer}) {
-
+function mapStateToProps ({authedUserReducer, userReducer, questionReducer}) {
     return {
+        authedUser: authedUserReducer ? authedUserReducer.authedUser : undefined,
         users: userReducer.users,
         questions: questionReducer.questions,
     }

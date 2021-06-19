@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Card, Button, Form} from 'react-bootstrap';
 import {addQuestion} from '../actions/questionActions';
 import uuid from 'react-uuid';
+import {Redirect} from 'react-router-dom';
 
 class NewQuestionPage extends Component {
     constructor(){
@@ -10,6 +11,13 @@ class NewQuestionPage extends Component {
         this.state = {
             optionOne: '',
             optionTwo: ''
+        }
+    }
+
+    componentDidMount = () => {
+        // Check login state
+        if (!this.props.authedUser) {
+            this.props.history.push(`/login`)
         }
     }
 

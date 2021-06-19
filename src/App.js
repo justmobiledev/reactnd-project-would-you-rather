@@ -1,7 +1,6 @@
 
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import NavigationBar from './navigation/NavigationBar';
@@ -49,8 +48,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, users, questionReducer }) {
-  console.log('mapStateToProps, ',questionReducer.questions);
+function mapStateToProps ({ questionReducer }) {
   return {
     questions: questionReducer.questions,
   }

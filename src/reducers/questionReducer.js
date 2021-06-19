@@ -5,7 +5,6 @@ export default function questionReducer (state = {}, action) {
     case LOAD_QUESTIONS:{
         
         const { questions } = action;
-        console.log(questions);
         return {
           ...state,
           questions

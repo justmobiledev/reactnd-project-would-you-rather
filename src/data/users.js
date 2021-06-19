@@ -32,10 +32,10 @@ let users = {
       },
       questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
     },
-    jendoe: {
-      id: 'jendoe',
-      name: 'Jen Doe',
-      avatarURL: 'https://github.com/justmobiledev/reactnd-project-would-you-rather/blob/main/images/avatar4.png?raw=true',
+    dutch: {
+      id: 'dutch',
+      name: 'Dutch',
+      avatarURL: 'https://github.com/justmobiledev/reactnd-project-would-you-rather/blob/main/images/avatar1.png?raw=true',
       answers: {
       },
       questions: [],
