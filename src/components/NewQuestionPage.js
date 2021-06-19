@@ -5,19 +5,15 @@ import {addQuestion} from '../actions/questionActions';
 import uuid from 'react-uuid';
 
 class NewQuestionPage extends Component {
-
-
     constructor(){
         super();
         this.state = {
             optionOne: '',
             optionTwo: ''
         }
-
-        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleInputChange(e) {
+    handleInputChange = (e) => {
         e.preventDefault()
         const target = e.target;
         var value = target.value;
@@ -40,8 +36,7 @@ class NewQuestionPage extends Component {
             text: this.state.optionTwo,
           };
 
-        const question = {id: uuid(), timestamp: new Date().getTime(), optionOne: optionOne, optionTwo: optionTwo};
-        console.log(question);
+        const question = {id: uuid(), author: this.props.authedUser, timestamp: new Date().getTime(), optionOne: optionOne, optionTwo: optionTwo};
         // dispatch add question
         const {dispatch} = this.props;
         dispatch(addQuestion(question));
@@ -72,9 +67,10 @@ class NewQuestionPage extends Component {
   }
 }
 
-function mapStateToProps () {
+function mapStateToProps ({authedUserReducer}) {
 
   return {
+      authedUser: authedUserReducer.authedUser
   }
 }
 

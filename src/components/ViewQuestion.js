@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {Card, Button, Form} from 'react-bootstrap';
 
-class ViewQuestionPage extends Component {
+class ViewQuestion extends Component {
 
   handleInputChange(event) {
     const target = event.target;
@@ -31,10 +31,10 @@ class ViewQuestionPage extends Component {
 
   render() {
     const { id, optionOne, optionTwo } = this.props;
-    const optionOneText = optionOne.text;
-    const optionTwoText = optionTwo.text;
 
-    const type = 'radio 1';
+    const optionOneText = optionOne ? optionOne.text : '';
+    const optionTwoText = optionTwo ? optionTwo.text : '';
+  
     return (
       <div>
           <Card style={{ width: '40rem' }}>
@@ -65,4 +65,4 @@ function mapStateToProps () {
   }
 }
 
-export default connect(mapStateToProps)(ViewQuestionPage)
+export default connect(mapStateToProps)(ViewQuestion)

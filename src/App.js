@@ -10,7 +10,7 @@ import NewQuestionPage from './components/NewQuestionPage';
 import Leaderboard from './components/Leaderboard';
 import UserProfile from './components/UserProfile';
 import LoginPage from './components/LoginPage';
-import ViewQuestionPage from './components/ViewQuestionPage';
+import ViewQuestion from './components/ViewQuestion';
 import questions from './data/questions';
 import {loadQuestions} from './actions/questionActions';
 import { connect } from 'react-redux'
@@ -42,11 +42,11 @@ class App extends Component {
                 }
 
                 <Route path='/' exact component={HomePage} />
-                <Route path='/newquestion' component={NewQuestionPage} />
-                <Route path='/viewquestion' component={ViewQuestionPage} />
+                <Route path='/new_question' component={NewQuestionPage} />
+                <Route path='/view_question' component={ViewQuestion} />
                 <Route path='/leaderboard' component={Leaderboard} />
                 <Route path='/userprofile' component={UserProfile} />
-                <Route path='/loginpage' component={LoginPage} />
+                <Route path='/login' component={LoginPage} />
 
 
           </div>
