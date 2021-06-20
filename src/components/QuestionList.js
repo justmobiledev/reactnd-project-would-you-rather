@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 import Question  from './Question'
-import {connect} from 'react-redux'
 import {isEmpty} from 'lodash/fp'
 
 class QuestionList extends Component {
@@ -21,11 +20,5 @@ class QuestionList extends Component {
     )
   }
 }
-
-function mapStateToProps ({}) {
-
-    return {
-    }
-  }
   
-  export default connect(mapStateToProps)(QuestionList)
+export default QuestionList

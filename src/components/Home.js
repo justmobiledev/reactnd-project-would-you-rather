@@ -2,29 +2,31 @@
 
 import React, { Component } from 'react'
 import {Card, Tabs, Tab} from 'react-bootstrap'
-import {isEmpty} from 'lodash/fp'
 import {connect} from 'react-redux'
 import QuestionList from './QuestionList'
-import {Redirect} from 'react-router-dom';
 
 class HomePage extends Component {
-    constructor(){
-        super();
-        this.state = {
-            activeTab: 'unanswered_questions'
-        }
-    }
-
-    componentDidMount = () => {
-      // Check login state
-      if (!this.props.authedUser) {
-        this.props.history.push(`/login`)
+  constructor(){
+      super();
+      this.state = {
+          activeTab: 'unanswered_questions'
       }
-    }
+  }
 
+  componentDidMount = () => {
+    // Check login state
+    if (!this.props.authedUser) {
+      this.props.history.push(`/login`)
+    }
+  }
 
   render() {
+    const authedUser = this.props.authedUser;
+    let answers = {};
 
+    if (authedUser) {
+      answers = authedUser.answers;
+    }
 
     const questions = this.props.questions;
     let unansweredQuestions = [];
@@ -32,14 +34,23 @@ class HomePage extends Component {
     if (questions) {
       for (const id in questions) {
         const question = questions[id];
-        if (isEmpty(question.optionOne.votes) && isEmpty(question.optionTwo.votes)) {
-          unansweredQuestions.push(question);
+        if (answers[question.id]) {
+          answeredQuestions.push(question);
         }
         else {
-          answeredQuestions.push(question);
+          unansweredQuestions.push(question);
         }
       }
     }
+
+    // Sort by created date
+    unansweredQuestions.sort(function(a, b) {
+      return b.timestamp - a.timestamp;
+    });
+
+    answeredQuestions.sort(function(a, b) {
+      return b.timestamp - a.timestamp;
+    });
 
     return (
       <div>
@@ -71,6 +82,6 @@ function mapStateToProps ({authedUserReducer, questionReducer}) {
   }
 }
 
-export default connect(mapStateToProps)(HomePage)
+export default connect(mapStateToProps)(HomePage);
 
 

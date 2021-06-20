@@ -14,7 +14,7 @@ class LoginPage extends Component {
     }
 
     handleInputChange = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const target = e.target;
         const userName = target.value;
 
@@ -59,7 +59,7 @@ class LoginPage extends Component {
               </Row>
               <Row>
                 <Col>
-                    <Form className="mx-auto my-2">
+                    <Form className="mx-auto my-4">
                     <Form.Group controlId="formLogin">
                         <Form.Control type="text" placeholder="Enter user name" onChange={this.handleInputChange}/>
                     </Form.Group>

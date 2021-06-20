@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {Card, Button, Form} from 'react-bootstrap';
-import {addQuestion} from '../actions/questionActions';
+import {handleAddQuestion} from '../actions/questionActions';
 import uuid from 'react-uuid';
-import {Redirect} from 'react-router-dom';
 
-class NewQuestionPage extends Component {
+class AddQuestion extends Component {
     constructor(){
         super();
         this.state = {
@@ -17,38 +16,40 @@ class NewQuestionPage extends Component {
     componentDidMount = () => {
         // Check login state
         if (!this.props.authedUser) {
-            this.props.history.push(`/login`)
+            this.props.history.push(`/login`);
         }
     }
 
     handleInputChange = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const target = e.target;
         var value = target.value;
         const name = target.name;
 
-        this.setState({[name]: value});
-    
-        //console.log('name: '+name+', value: '+value);
-        
+        this.setState({[name]: value});  
     }
     
-      submit = () => {
-        const optionOne = {
-            votes: [],
-            text: this.state.optionOne,
-          };
-  
-          const optionTwo = {
-            votes: [],
-            text: this.state.optionTwo,
-          };
+    submit = () => {
+      const optionOne = {
+          votes: [],
+          text: this.state.optionOne,
+        };
 
-        const question = {id: uuid(), author: this.props.authedUser, timestamp: new Date().getTime(), optionOne: optionOne, optionTwo: optionTwo};
-        // dispatch add question
-        const {dispatch} = this.props;
-        dispatch(addQuestion(question));
-      }
+        const optionTwo = {
+          votes: [],
+          text: this.state.optionTwo,
+        };
+
+      const id = uuid();
+      const question = {id: uuid(), author: this.props.authedUser.id, timestamp: new Date().getTime(), optionOne: optionOne, optionTwo: optionTwo};
+      
+      // Add question
+      const{dispatch} = this.props;
+      dispatch(handleAddQuestion(question));
+
+      // Redirect to home
+      this.props.history.push(`/`);
+    }
 
   render() {
     return (
@@ -76,10 +77,9 @@ class NewQuestionPage extends Component {
 }
 
 function mapStateToProps ({authedUserReducer}) {
-
   return {
-      authedUser: authedUserReducer.authedUser
+    authedUser: authedUserReducer ? authedUserReducer.authedUser : undefined,
   }
 }
 
-export default connect(mapStateToProps)(NewQuestionPage)
+export default connect(mapStateToProps)(AddQuestion);

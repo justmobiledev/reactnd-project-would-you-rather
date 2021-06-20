@@ -4,22 +4,18 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {isEmpty} from 'lodash/fp'
 import LeaderboardItem from './LeaderboardItem'
-import {Redirect} from 'react-router-dom'
 
 class Leaderboard extends Component {
     componentDidMount = () => {
         // Check login state
         if (!this.props.authedUser) {
-          this.props.history.push(`/login`)
+            this.props.history.push(`/login`)
         }
-      }
+    }
 
   render() {
-
+      // Build leaderboard
       const users = this.props.users;
-      //const questions = this.props.questions;
-
-      // Generate leaderboard
       let leaderboardItems = [];
       if (!isEmpty(users)) {
         for (const id in users) {
@@ -59,4 +55,4 @@ function mapStateToProps ({authedUserReducer, userReducer, questionReducer}) {
     }
   }
   
-  export default connect(mapStateToProps)(Leaderboard)
+  export default connect(mapStateToProps)(Leaderboard);

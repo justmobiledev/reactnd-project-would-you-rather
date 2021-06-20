@@ -19,10 +19,10 @@ class LeaderboardItem extends Component {
                     </Col>
                     <Col xs={6}>
                         <h1>{item.name}</h1>
-                      <p>
+                      <div>
                         <b>Answered Questions: {item.answerCount}</b><br/>
                         <b>Submitted Questions: {item.questionCount}</b>
-                      </p>
+                      </div>
                     </Col>
                     <Col>
                       <Button variant="primary"  style={{marginTop: 48, height: 48}}>

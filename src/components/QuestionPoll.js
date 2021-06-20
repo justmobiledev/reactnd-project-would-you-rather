@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import {ProgressBar, Card, Container, Row, Col, Image, Button, Alert} from 'react-bootstrap';
-import {Redirect} from 'react-router-dom';
+import {ProgressBar, Card, Container, Row, Col, Image, Alert, Button} from 'react-bootstrap';
 
 class QuestionPoll extends Component {
-
   componentDidMount = () => {
     // Check login state
     if (!this.props.authedUser) {
@@ -12,56 +10,48 @@ class QuestionPoll extends Component {
     }
   }
 
-  handleInputChange(event) {
-    const target = event.target;
-    var value = target.value;
-    const name = target.name; 
-    
-  }
-
-  submit = () => {
-    console.log('submit');
-  }
-
   render() {
-    // Check login state
-    if (!this.props.authedUser) {
-      return <Redirect to="/login" />;
+    const { id, questions, users, authedUser } = this.props;
+    let question;
+    let optionOneText = '';
+    let optionTwoText = '';
+    let totalVotes = 0;
+    let optionOneCount = 0;
+    let optionTwoCount = 0;
+    let optionOnePercent = 0;
+    let optionTwoPercent = 0;
+    let optionOneVariant = 'light';
+    let optionTwoVariant = 'light';
+    let optionOneSelected = false;
+    let optionTwoSelected = false;
+    if (questions) {
+      question = questions[id];
+      optionOneText = question.optionOne.text;
+      optionTwoText = question.optionTwo.text;
+
+      // Calculate poll info
+      optionOneCount = question.optionOne.votes.length;
+      optionTwoCount = question.optionTwo.votes.length;
+      totalVotes = optionOneCount + optionTwoCount;
+
+      optionOnePercent = Math.floor(totalVotes > 0 ? optionOneCount/totalVotes * 100 : 0);
+      optionTwoPercent = Math.floor(totalVotes > 0 ? optionTwoCount/totalVotes * 100 : 0);
+
+      if (optionOneCount > optionTwoCount) {
+        optionOneVariant = 'success';
+      }
+      if (optionTwoCount > optionOneCount) {
+        optionTwoVariant = 'success';
+      }
+
+      // Determine user selection
+      if (question.optionOne.votes.includes(authedUser.id)) {
+        optionOneSelected = true;
+      }
+      else {
+        optionTwoSelected = true;
+      }
     }
-
-
-    const { id, questions, users } = this.props;
-   // const question = questions[id];
-   let question;
-   let optionOneText = '';
-   let optionTwoText = '';
-   let totalVotes = 0;
-   let optionOneCount = 0;
-   let optionTwoCount = 0;
-   let optionOnePercent = 0;
-   let optionTwoPercent = 0;
-   let optionOneVariant = 'light';
-   let optionTwoVariant = 'light';
-   if (questions) {
-    question = questions[id];
-    optionOneText = question.optionOne.text;
-    optionTwoText = question.optionTwo.text;
-
-    // Calculate poll info
-    optionOneCount = question.optionOne.votes.length;
-    optionTwoCount = question.optionTwo.votes.length;
-    totalVotes = optionOneCount + optionTwoCount;
-
-    optionOnePercent = totalVotes > 0 ? optionOneCount/totalVotes * 100 : 0;
-    optionTwoPercent = totalVotes > 0 ? optionTwoCount/totalVotes * 100 : 0;
-
-    if (optionOneCount > optionTwoCount) {
-      optionOneVariant = 'success';
-    }
-    if (optionTwoCount > optionOneCount) {
-      optionTwoVariant = 'success';
-    }
-   }
 
    let authorName = '';
    let avatarURL = '';
@@ -71,7 +61,6 @@ class QuestionPoll extends Component {
     authorName = author.name;
     avatarURL = author.avatarURL;
    }
-
 
     return (
       <div style={{marginTop: 24, marginBottom: 200}}>
@@ -90,14 +79,18 @@ class QuestionPoll extends Component {
                           Would you rather {optionOneText}?
 
                           <ProgressBar style={{marginTop: 16}} now={optionOnePercent} label={`${optionOnePercent}%`}/>
-                          <p style={{marginTop: 8}}><b>{optionOneCount} of {totalVotes}</b></p>
+                          <div style={{marginTop: 8}}><b>{optionOneCount} of {totalVotes}</b></div>
+
+                          {optionOneSelected && <Button variant="success">Voted!</Button>}
                         </Alert>
 
                         <Alert variant={optionTwoVariant}>
                           Would you rather {optionTwoText}?
 
                           <ProgressBar style={{marginTop: 16}} now={optionTwoPercent} label={`${optionTwoPercent}%`}/>
-                          <p style={{marginTop: 8}}><b>{optionTwoCount} of {totalVotes}</b></p>
+                          <div style={{marginTop: 8}}><b>{optionTwoCount} of {totalVotes}</b></div>
+
+                          {optionTwoSelected && <Button variant="success">Voted!</Button>}
                         </Alert>
                       </Col>
                     </Row>
@@ -121,4 +114,4 @@ function mapStateToProps ({authedUserReducer, userReducer, questionReducer}, pro
   }
 }
 
-export default connect(mapStateToProps)(QuestionPoll)
+export default connect(mapStateToProps)(QuestionPoll);
