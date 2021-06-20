@@ -116,7 +116,7 @@ class AnswerQuestion extends Component {
                               onClick={this.handleClick}
                             />
                       </Form>
-                      <Button variant="primary" type="submit" onClick={()=>this.submit()}>Submit</Button>
+                        <Button className="mx-auto my-4" variant="primary" type="submit" onClick={()=>this.submit()}>Submit</Button>
                       </Col>
                     </Row>
                   </Container>

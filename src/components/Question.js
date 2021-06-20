@@ -40,7 +40,7 @@ class Question extends Component {
                           {optionOneText}?<br/>
                           <b>OR</b><br/>
                           {optionTwoText}?
-                          <Button style={{width: '100%'}}  variant="info" onClick={()=>this.onAnswerQuestion(question.id)}>Answer Question</Button>
+                          <Button className="mx-auto my-4"  style={{width: '100%'}}  variant="info" onClick={()=>this.onAnswerQuestion(question.id)}>Answer Question</Button>
                         </Col>
                       </Row>
                     </Container>
