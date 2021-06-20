@@ -41,7 +41,6 @@ class LoginPage extends Component {
       }
 
   render() {
-
     const invalidLogin = this.state.invalidLogin;
 
     return (

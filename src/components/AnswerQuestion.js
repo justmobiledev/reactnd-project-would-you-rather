@@ -59,11 +59,6 @@ class AnswerQuestion extends Component {
   }
 
   render() {
-    // Check login state
-    if (!this.props.authedUser) {
-      return <Redirect to="/login" />;
-    }
-
     const { id, questions, users } = this.props;
     let question;
     let optionOneText = '';
